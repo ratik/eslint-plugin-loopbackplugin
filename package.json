@@ -1,0 +1,14 @@
+{
+  "name": "eslint-plugin-loopbackplugin",
+  "version": "0.0.1",
+  "main": "index.js",
+  "dependencies": {
+    "lodash": "^4.16.6"
+  },
+  "devDependencies": {
+    "eslint": "^3.12.2"
+  },
+  "engines": {
+    "node": ">=0.10.0"
+  }
+}

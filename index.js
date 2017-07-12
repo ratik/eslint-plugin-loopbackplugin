@@ -57,5 +57,41 @@ module.exports.rules = {
             }
 
         }
+    }),
+    "checkdestroyAllArgumentNull": context => ({
+
+        "MemberExpression": function (node) {
+            let functionName = node.property.name;
+            if (functionName == 'destroyAll') {
+
+                const args = node.parent.arguments;
+                if (args == 0) {
+                    context.report(node.property, 'Null argument for function destroyAll');
+                }
+            }
+        }
+    }),
+    "checkdestroyAllArgumentWhere": context => ({
+        "MemberExpression": function (node) {
+            let functionName = node.property.name;
+            if (functionName == 'destroyAll') {
+                const args = node.parent.arguments;
+                if (args && args.length) {
+                    _.forEach(args, function (element) {
+                        if (element.type === 'ArrowFunctionExpression') {
+                            flag = true;
+                        }
+                        if (element.properties) {
+                            if (
+                                element.properties.find(v => v.key.name === 'where') ||
+                                element.properties.find(v => v.key.value === 'where')
+                            ) {
+                              context.report(node.property, 'Where argument for function destroyAll');
+                            }
+                        }
+                    });
+                }
+            }
+        }
     })
 };

@@ -24,6 +24,7 @@ module.exports.rules = {
         "MemberExpression": function (node) {
             let functionName = node.property.name;
             if ((functionName == 'find' || (functionName == 'findOne'))) {
+                console.log(node);
                 let flag = false;
                 if (node.parent.callee.object.name === '_') {
                     flag = true;

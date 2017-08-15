@@ -27,6 +27,7 @@ module.exports.rules = {
             console.log(functionName);
             console.log(node.parent);
             console.log(node.parent.callee);
+                console.log(typeof(node.parent.callee));
                 if (typeof(node.parent.callee) == "undefined") {
                     console.log(1111111);
                     return;

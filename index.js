@@ -22,9 +22,10 @@ module.exports.rules = {
         // Public
         //----------------------------------------------------------------------
         "MemberExpression": function (node) {
-            console.log(node);
             let functionName = node.property.name;
             if ((functionName == 'find') || (functionName == 'findOne') || (functionName == 'findById')) {
+            console.log(node);
+                
                 let flag = false;
                 if (typeof (node.parent.callee) == "undefined") {
                     flag = false;

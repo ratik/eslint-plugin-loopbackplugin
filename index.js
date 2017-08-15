@@ -26,7 +26,7 @@ module.exports.rules = {
             console.log(functionName);
             console.log('qqqqq\n\n');
             console.log(node);
-            if ((functionName == 'find') || (functionName == 'findOne'))) {
+            if ((functionName == 'find') || (functionName == 'findOne')) {
                 if (node.parent.callee == undefined)
                     return;
                 let flag = false;

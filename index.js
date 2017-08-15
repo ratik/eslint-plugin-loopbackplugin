@@ -33,16 +33,12 @@ module.exports.rules = {
                     return;
                 }
                 let flag = false;
-//                 if  (node.parent) {
-//                 if (node.parent.callee.object.name === '_') {
-//                     flag = true;
-//                   }
-//                 }
+
                 const args = node.parent.arguments;
                 if (args == 0) {
                     flag = true;
                 }
-                console.log('qqqqq');
+          
                 if (args && args.length) {
                     _.forEach(args, function (element) {
                         if (element.type === 'ArrowFunctionExpression') {

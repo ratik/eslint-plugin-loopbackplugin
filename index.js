@@ -27,25 +27,20 @@ module.exports.rules = {
             console.log(functionName);
             console.log(node.parent);
             console.log(node.parent.callee);
-                if (node.parent.callee == undefined) {
-                    console.log(1111111111);
+                if (typeOf(node.parent.callee) == "undefined") {
                     return;
                 }
                 let flag = false;
-
                 const args = node.parent.arguments;
                 if (args == 0) {
                     flag = true;
                 }
-          
                 if (args && args.length) {
                     _.forEach(args, function (element) {
                         if (element.type === 'ArrowFunctionExpression') {
                             flag = true;
-                            console.log(2222222222);
                         }
                         if (element.properties) {
-                            console.log(33333333333);
                             if (
                                 element.properties.find(v => v.key.name === 'where') ||
                                 element.properties.find(v => v.key.name === 'include') ||
@@ -54,7 +49,6 @@ module.exports.rules = {
                                 element.properties.find(v => v.key.value === 'where') ||
                                 element.properties.find(v => v.key.value === 'order')
                             ) {
-                                console.log(44444444444444);
                                 flag = true;
                             }
                         }

@@ -29,7 +29,7 @@ module.exports.rules = {
 //             console.log(node);
             if ((functionName == 'find') || (functionName == 'findOne')) {
                 if (node.parent.callee == undefined) {
-                    console.log(node.parent.callee);
+                    console.log(1111111111);
                     return;
                 }
                 let flag = false;

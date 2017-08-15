@@ -42,6 +42,7 @@ module.exports.rules = {
                 if (args == 0) {
                     flag = true;
                 }
+                console.log('qqqqq');
                 if (args && args.length) {
                     _.forEach(args, function (element) {
                         if (element.type === 'ArrowFunctionExpression') {

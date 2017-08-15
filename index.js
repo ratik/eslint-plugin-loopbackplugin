@@ -24,37 +24,34 @@ module.exports.rules = {
         "MemberExpression": function (node) {
             let functionName = node.property.name;
             if ((functionName == 'find') || (functionName == 'findOne') || (functionName == 'findById')) {
-            console.log(functionName);
-            console.log(node.parent);
-            console.log(node.parent.callee);
-                console.log(typeof(node.parent.callee));
-                if (typeof(node.parent.callee) == "undefined") {
-                    console.log(1111111);
-                    return;
-                }
                 let flag = false;
-                const args = node.parent.arguments;
-                if (args == 0) {
-                    flag = true;
+                if (typeof (node.parent.callee) == "undefined") {
+                    flag = false;
                 }
-                if (args && args.length) {
-                    _.forEach(args, function (element) {
-                        if (element.type === 'ArrowFunctionExpression') {
-                            flag = true;
-                        }
-                        if (element.properties) {
-                            if (
-                                element.properties.find(v => v.key.name === 'where') ||
-                                element.properties.find(v => v.key.name === 'include') ||
-                                element.properties.find(v => v.key.name === 'fields') ||
-                                element.properties.find(v => v.key.value === 'fields') ||
-                                element.properties.find(v => v.key.value === 'where') ||
-                                element.properties.find(v => v.key.value === 'order')
-                            ) {
+                else {
+                    const args = node.parent.arguments;
+                    if (args == 0) {
+                        flag = true;
+                    }
+                    if (args && args.length) {
+                        _.forEach(args, function (element) {
+                            if (element.type === 'ArrowFunctionExpression') {
                                 flag = true;
                             }
-                        }
-                    });
+                            if (element.properties) {
+                                if (
+                                    element.properties.find(v => v.key.name === 'where') ||
+                                    element.properties.find(v => v.key.name === 'include') ||
+                                    element.properties.find(v => v.key.name === 'fields') ||
+                                    element.properties.find(v => v.key.value === 'fields') ||
+                                    element.properties.find(v => v.key.value === 'where') ||
+                                    element.properties.find(v => v.key.value === 'order')
+                                ) {
+                                    flag = true;
+                                }
+                            }
+                        });
+                    }
                 }
                 if (!flag) {
                     context.report(node.property, 'Wrong argument for function find/findOne');
@@ -91,7 +88,7 @@ module.exports.rules = {
                                 element.properties.find(v => v.key.name === 'where') ||
                                 element.properties.find(v => v.key.value === 'where')
                             ) {
-                              context.report(node.property, 'Where argument for function destroyAll');
+                                context.report(node.property, 'Where argument for function destroyAll');
                             }
                         }
                     });

@@ -23,7 +23,7 @@ module.exports.rules = {
         //----------------------------------------------------------------------
         "MemberExpression": function (node) {
             let functionName = node.property.name;
-            if ((functionName == 'find') || (functionName == 'findOne') || (functionName == 'findById')) {
+            if ((functionName == 'find') || (functionName == 'findOne')) {
             console.log(node);
                 
                 let flag = false;

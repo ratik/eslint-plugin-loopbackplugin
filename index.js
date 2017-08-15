@@ -30,9 +30,9 @@ module.exports.rules = {
                     flag = false;
                 }
                 else {
-//                     if (node.parent.callee.object.name === '_') {
-//                     flag = true;
-//                      }
+                    if (node.parent.callee.object.name === '_') {
+                    flag = true;
+                     }
                     const args = node.parent.arguments;
                     if (args == 0) {
                         flag = true;

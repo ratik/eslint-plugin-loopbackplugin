@@ -24,17 +24,20 @@ module.exports.rules = {
         "MemberExpression": function (node) {
             let functionName = node.property.name;
             console.log(functionName);
-            console.log('qqqqq\n\n');
-            console.log(node.parent.callee);
-            console.log(node);
+//             console.log('qqqqq\n\n');
+//             console.log(node.parent.callee);
+//             console.log(node);
             if ((functionName == 'find') || (functionName == 'findOne')) {
-                if (node.parent.callee == undefined)
+                if (node.parent.callee == undefined) {
+                    console.log(node.parent.callee);
                     return;
-                let flag = false;
-                if(node.parent)
-                if (node.parent.callee.object.name === '_') {
-                    flag = true;
                 }
+                let flag = false;
+//                 if  (node.parent) {
+//                 if (node.parent.callee.object.name === '_') {
+//                     flag = true;
+//                   }
+//                 }
                 const args = node.parent.arguments;
                 if (args == 0) {
                     flag = true;

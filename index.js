@@ -43,8 +43,10 @@ module.exports.rules = {
                     _.forEach(args, function (element) {
                         if (element.type === 'ArrowFunctionExpression') {
                             flag = true;
+                            console.log(2222222222);
                         }
                         if (element.properties) {
+                            console.log(33333333333);
                             if (
                                 element.properties.find(v => v.key.name === 'where') ||
                                 element.properties.find(v => v.key.name === 'include') ||
@@ -53,6 +55,7 @@ module.exports.rules = {
                                 element.properties.find(v => v.key.value === 'where') ||
                                 element.properties.find(v => v.key.value === 'order')
                             ) {
+                                console.log(44444444444444);
                                 flag = true;
                             }
                         }
